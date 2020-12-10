@@ -1,8 +1,8 @@
-import React,{useContext} from "react";
+import React, { useContext } from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
 import { TouchableHighlight } from "react-native";
-import LojaContext from '../../../data/Loja/Context'
+import LojaContext from '../../../data/Loja/Context';
 import {
   Container,
   Left,
@@ -16,53 +16,42 @@ import {
   ValorFrete,
 } from "./styles";
 
-function Avaliado({ item,navigation }) {
-  const {GetId} = useContext(LojaContext)
+function Avaliado({ item, navigation }) {
+  console.log(item);
+  const { GetId } = useContext(LojaContext)
 
-function setId(){
+  function setId() {
 
-  GetId(item.item.id)
+    GetId(item.item.idempresa)
 
-  navigation.navigate("PetShopAcessorios",item)
-}
+    navigation.navigate("PetShopAcessorios", item)
+  }
 
   return (
-    <TouchableHighlight onPress={ setId }>
-    <Container>
-      <Left>
-        <SymbleEnterprise
-          color={item.item.color}
-          source={{
-            uri: item.item.url,
-          }}
-        />
-        <Info>
-          <Name>{item.item.name}</Name>
-          <Adicionais>
-            <RamoAtuacao>
-              <TempoDeEntrega>{item.item.ramo + " "}</TempoDeEntrega>
-              <MaterialCommunityIcons
-                name="circle"
-                size={5}
-                color="rgba(0,0,0,0.4)"
-                style={{
-                  marginTop: 3,
-                }}
-              />
-              <TempoDeEntrega>{" " + item.item.tempoEstimadoEntrega}</TempoDeEntrega>
-            </RamoAtuacao>
-            <ValorFrete>Frete: {" " + item.item.frete}</ValorFrete>
-          </Adicionais>
-        </Info>
-      </Left>
-      <Right>
-        <Icon name="star" size={12} color="#ffd700" />
-        <Icon name="star" size={12} color="#ffd700" />
-        <Icon name="star" size={12} color="#ffd700" />
-        <Icon name="star" size={12} color="#ffd700" />
-        <Icon name="star-half" size={12} color="#ffd700" />
-      </Right>
-    </Container>
+    <TouchableHighlight onPress={setId}>
+      <Container>
+        <Left>
+          <SymbleEnterprise
+            color='#f76abc'
+            source={{
+              uri: "http://192.168.15.11:3333/uploads/company/save/" + item.item.foto_perfil,
+            }}
+          />
+          <Info>
+            <Name>{item.item.nome}</Name>
+            <Adicionais>
+              <ValorFrete>Frete: {" " + item.item.frete === '' || item.item.frete === null || item.item.frete === '0000' ? 'grátis' : item.item.frete}</ValorFrete>
+            </Adicionais>
+          </Info>
+        </Left>
+        <Right>
+          <Icon name="star" size={12} color="#ffd700" />
+          <Icon name="star" size={12} color="#ffd700" />
+          <Icon name="star" size={12} color="#ffd700" />
+          <Icon name="star" size={12} color="#ffd700" />
+          <Icon name="star-half" size={12} color="#ffd700" />
+        </Right>
+      </Container>
     </TouchableHighlight>
   );
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { MaterialCommunityIcons } from "react-native-vector-icons";
-import { TouchableHighlight } from "react-native";
+import { moedaMask } from '../../../Mascara/mask';
 import {
   Container,
   Left,
@@ -16,22 +16,21 @@ import {
 } from "./styles";
 
 function Avaliado({ item }) {
-  console.log("Estou no item lista do loja")
+
   return (
-    <TouchableHighlight onPress={() => navigation.navigate("Screen")}>
     <Container>
       <Left>
         <SymbleEnterprise
-          color={item.item.color}
+          color='#f76abc'
           source={{
-            uri: item.item.url,
+            uri: "http://192.168.15.11:3333/uploads/product/save/" + item.item.foto_principal,
           }}
         />
         <Info>
-          <Name>{item.item.name}</Name>
+          <Name>{item.item.nome_prod}</Name>
           <Adicionais>
             <RamoAtuacao>
-              <TempoDeEntrega>{item.item.categoria + " "}</TempoDeEntrega>
+              <TempoDeEntrega>{item.item.especie + " "}</TempoDeEntrega>
               <MaterialCommunityIcons
                 name="circle"
                 size={5}
@@ -40,9 +39,9 @@ function Avaliado({ item }) {
                   marginTop: 3,
                 }}
               />
-              <TempoDeEntrega>{" " + item.item.porte}</TempoDeEntrega>
+              <TempoDeEntrega>{" " + item.item.raca}</TempoDeEntrega>
             </RamoAtuacao>
-            <ValorFrete>Preço: {" " + item.item.valor}</ValorFrete>
+            <ValorFrete>Preço: {" R$ " + moedaMask("'" + item.item.valor + "'")}</ValorFrete>
           </Adicionais>
         </Info>
       </Left>
@@ -54,7 +53,6 @@ function Avaliado({ item }) {
         <Icon name="star-half" size={12} color="#ffd700" />
       </Right>
     </Container>
-    </TouchableHighlight>
   );
 }
 

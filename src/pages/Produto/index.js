@@ -20,59 +20,59 @@ import data from '../../data/data1';
 import { moedaMask } from '../../Mascara/mask';
 
 function Produto({ navigation }) {
+  const { item } = navigation.state.params.item;
+  const { GetObeject, ItensCompra } = useContext(CompraContext)
+  const [qtde, setQtde] = useState(1);
 
-   const {item} = navigation.state.params.item;
-   const {GetObeject,ItensCompra} = useContext(CompraContext)
-   const [qtde,setQtde] = useState(1);
+  async function carrinho() {
 
-async function carrinho(){
+    console.log("estou no produto")
 
- console.log("estou no produto")
+    console.log(item.frete)
 
-  console.log(item.frete)
+    var verifica = true;
 
-  var verifica = true;
+    ItensCompra.forEach(element => {
 
-  ItensCompra.forEach(element => {
+      if (element.id == item.idproduto) {
 
-    if(element.id == item.idproduto){
+        verifica = false;
 
-      verifica = false;
+      }
 
-    }
+    });
 
-   });
+    if (verifica) {
 
-    if(verifica){
+      const Compras = await GetObeject(item.idproduto, item.nome, item.valor, item.url, qtde, item.frete)
 
-      const Compras = await GetObeject(item.idproduto,item.nome,item.valor,item.url,qtde,item.frete)
+      navigation.navigate('Finalizacao', item)
 
-      navigation.navigate('Finalizacao',item)
-
-    }else{
+    } else {
 
       alert("Produto já existe no carrinho")
 
     }
 
 
-}
+  }
   return (
     <Container>
-     <Content>
+      <Content>
         <PhotoContainer>
-        <Photo source={{
-            uri: item.url
+          <Photo source={{
+            uri: "http://192.168.15.11:3333/uploads/product/save/" + item.foto_principal,
           }} resizeMode='contain' />
         </PhotoContainer>
       </Content>
       <BoxForName>
-        <Name>{item.nome}</Name>
+        <Name>{item.nome_prod}</Name>
       </BoxForName>
 
       <BoxForDescripition>
-        <Text>Espécie: {item.nome_especie}</Text>
-        <Text>Raça: {item.nome_raca}</Text>
+        <Text>Categoria: {item.nome_categoria}</Text>
+        <Text>Espécie: {item.especie}</Text>
+        <Text>Raça: {item.raca}</Text>
         <Text>Marca: {item.marca}</Text>
         <Text>Peso: {moedaMask("'" + item.peso + "'")} {item.unidade_medida}</Text>
         <Descripition>
@@ -80,7 +80,7 @@ async function carrinho(){
         </Descripition>
       </BoxForDescripition>
 
-      <Button onPress={carrinho}>
+      <Button onPress={() => navigation.navigate('Finalizacao')}>
         <Valor>R$ {moedaMask("'" + item.valor + "'")}</Valor>
         <Icon name="plus" size={35} color="#fff" />
       </Button>

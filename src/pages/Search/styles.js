@@ -1,4 +1,5 @@
-import styled from "styled-components/native";
+import styled from 'styled-components/native';
+import RNPickerSelect from 'react-native-picker-select';
 
 export const Container = styled.ScrollView.attrs({
   showsVerticalScrollIndicator: false,
@@ -25,21 +26,22 @@ export const SearchTxt = styled.TextInput`
   width: 100%;
 `;
 
-export const BuscasRecentes = styled.View`
+export const Filtros = styled.View`
   margin-top: 20px;
   margin-left: 10px;
+  margin-bottom: 30px;
 `;
 
 export const Title = styled.Text`
   font-size: 16px;
   font-weight: bold;
 `;
-export const Recente = styled.View`
-  margin-top: 15px;
-  margin-left: 15px;
+export const ViewSelect = styled.View`
+  margin-top: 5px;
+  margin-right: 10px;
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  border-radius: 4px;
+  background: #f5f5f5;
 `;
 export const Text = styled.Text`
   font-size: 14px;
@@ -52,3 +54,5 @@ export const ProcuraPorClick = styled.View`
   margin-top: 20px;
   margin-left: 10px;
 `;
+
+export const SelectInput = styled(RNPickerSelect)``;
