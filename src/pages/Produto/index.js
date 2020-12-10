@@ -20,7 +20,9 @@ import data from '../../data/data1';
 import { moedaMask } from '../../Mascara/mask';
 
 function Produto({ navigation }) {
-  const { item } = navigation.state.params.item;
+  console.log(navigation);
+  const { item } = navigation.state.params;
+  console.log(item);
   const { GetObeject, ItensCompra } = useContext(CompraContext)
   const [qtde, setQtde] = useState(1);
 
@@ -44,7 +46,7 @@ function Produto({ navigation }) {
 
     if (verifica) {
 
-      const Compras = await GetObeject(item.idproduto, item.nome, item.valor, item.url, qtde, item.frete)
+      const Compras = await GetObeject(item.idproduto, item.nome_prod, item.valor, item.url, qtde, item.frete)
 
       navigation.navigate('Finalizacao', item)
 
@@ -97,7 +99,7 @@ Produto.navigationOptions = ({ navigation }) => ({
     shadowOffset: { height: 0, width: 0 },
   },
   headerLeft: () => (
-    <Back onPress={() => navigation.navigate('PetShopAlimentos')} color="#2dc7ff" />
+    <Back onPress={() => navigation.navigate('PetShopAcessorios')} color="#2dc7ff" />
   ),
 });
 

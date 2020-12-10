@@ -371,3 +371,30 @@ export const user = {
   senha: '123',
   email: 'jonathan@teste.com',
 };
+
+export const Filtro = [
+  {
+    label: 'Escolha seu tipo de busca',
+    value: '0',
+  },
+  {
+    label: 'Lojas',
+    value: 'nome_empresa',
+  },
+  {
+    label: 'Produto',
+    value: 'nome_prod',
+  },
+  {
+    label: 'Categoria',
+    value: 'nome_categoria',
+  },
+  {
+    label: 'Espécie',
+    value: 'especie',
+  },
+  {
+    label: 'Raça',
+    value: 'raca',
+  },
+];

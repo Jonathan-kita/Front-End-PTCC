@@ -36,7 +36,7 @@ export default [
     });
   },
   function verifica_Cancel_6(id) {
-    console.log("ID"+ id)
+    console.log("ID" + id)
     return Api.post('/verificaCancel', { id: id }).then((results) => {
       /* console.log("TESTE"+results.data.filter("status")==="ativo")*/
 
@@ -45,24 +45,35 @@ export default [
   },
 
   function Item_Loja_acessorios_7(id) {
-    return Api.post('/empresa_produto', { id: id, tela:"Acessórios"}).then((results) => {
+    return Api.post('/List_Product_Category', { "idempresa": id, "categoria": 'Acessório' }).then((results) => {
       /* console.log("TESTE"+results.data.filter("status")==="ativo")*/
 
       return results.data;
     });
   },
-  function Item_Loja_Alimento_8(id) {
-    return Api.post('/empresa_produto',{ id: id, tela:"Alimentos"}).then((results) => {
+
+  function Item_Loja_alimentos_8(id) {
+    return Api.post('/List_Product_Category', { "idempresa": id, "categoria": 'Alimentos' }).then((results) => {
       /* console.log("TESTE"+results.data.filter("status")==="ativo")*/
-  /*     console.log("teste")
-      console.log(results) */
+
       return results.data;
     });
   },
-  function Item_Loja_saude_9(id) {
-    return Api.post('/empresa_produto', { id: id, tela:"Saúde"}).then((results) => {
+
+  function Item_Loja_saúde_9(id) {
+    return Api.post('/List_Product_Category', { "idempresa": id, "categoria": 'Saúde' }).then((results) => {
       /* console.log("TESTE"+results.data.filter("status")==="ativo")*/
- ;
+
+      return results.data;
+    });
+  },
+  function Filtro_Pesquisa_10(campo, busca) {
+    return Api.post('/Search_Filter', { "campo": campo, "busca": busca }).then((results) => {
+      return results.data;
+    });
+  },
+  function Filtro_Pesquisa_Empresa_11(busca) {
+    return Api.post('/Search_Filter_Company', { "busca": busca }).then((results) => {
       return results.data;
     });
   },

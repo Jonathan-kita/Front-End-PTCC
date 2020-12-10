@@ -23,6 +23,8 @@ const Itens = ({ navigation }) => {
     }
   }, []);
 
+  console.log(lista);
+
   return (
     <List
       data={lista}

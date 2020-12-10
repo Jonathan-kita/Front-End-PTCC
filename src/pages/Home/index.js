@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 
 import { useSelector } from 'react-redux';
 
@@ -15,10 +15,18 @@ import Avaliado from './Avaliado';
 import { Container, List } from './styles';
 
 import data from '../../data/data1';
+import LojaContext from '../../data/Loja/Context'
+
 function Home({ navigation }) {
 
   // Pega os Valores das Lojas Avalidas
   const [lista, setlista] = useState('');
+  const { GetContext, GetId } = useContext(LojaContext)
+
+  function Contexto() {
+    GetContext('0');
+  }
+
   useEffect(() => {
     data[0]().then((results) => {
       return setlista(results);
@@ -27,7 +35,7 @@ function Home({ navigation }) {
 
   return (
     <Container>
-      <Produtos onPress={() => navigation.navigate('Alimentos')} />
+      <Produtos onPress={() => { navigation.navigate('Alimentos'), Contexto }} />
       <Carrossel image={carrosselImage} />
       <List
         data={lista}

@@ -105,7 +105,7 @@ export default (signedIn = false) =>
                   },
                   {
                     navigationOptions: ({ navigation }) => ({
-                      title:"Loja",
+                      title: "Loja",
                       headerTitleAlign: 'center',
                       headerTitleStyle: {
                         color: '#333',
@@ -249,6 +249,6 @@ export default (signedIn = false) =>
         ),
       },
 
-      { initialRouteName: 'Sign' }
+      { initialRouteName: 'App' }
     )
   );
